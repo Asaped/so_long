@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	ft_free_info(t_game *info)
+int	ft_free_info(t_game *info)
 {
 	int	i;
 
@@ -8,7 +8,7 @@ void	ft_free_info(t_game *info)
 	while (++i < info->y)
 		free(info->map[i]);
 	if (info->map)
-		free(info->map)
+		free(info->map);
 	return (0);
 }
 

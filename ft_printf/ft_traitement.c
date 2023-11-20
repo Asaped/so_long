@@ -6,13 +6,13 @@
 /*   By: moturki <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:16:54 by moturki           #+#    #+#             */
-/*   Updated: 2023/11/07 19:19:46 by moturki          ###   ########.fr       */
+/*   Updated: 2023/11/17 22:30:47 by moturki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_list	ft_traitement_hexa(t_list info, char c)
+t_list3	ft_traitement_hexa(t_list3 info, char c)
 {
 	unsigned int	nb;
 
@@ -21,7 +21,7 @@ t_list	ft_traitement_hexa(t_list info, char c)
 	return (info);
 }
 
-t_list	ft_traitement_ptr(t_list info, char c)
+t_list3	ft_traitement_ptr(t_list3 info, char c)
 {
 	size_t	nb;
 
@@ -30,7 +30,7 @@ t_list	ft_traitement_ptr(t_list info, char c)
 	return (info);
 }
 
-t_list	ft_traitement_unsigned(t_list info, char c)
+t_list3	ft_traitement_unsigned(t_list3 info, char c)
 {
 	unsigned int	nb;
 
@@ -39,7 +39,7 @@ t_list	ft_traitement_unsigned(t_list info, char c)
 	return (info);
 }
 
-t_list	ft_traitement_int(t_list info, char c)
+t_list3	ft_traitement_int(t_list3 info, char c)
 {
 	int				nb;
 
@@ -48,7 +48,7 @@ t_list	ft_traitement_int(t_list info, char c)
 	return (info);
 }
 
-t_list	ft_traitement_string(t_list info)
+t_list3	ft_traitement_string(t_list3 info)
 {
 	char	*str;
 	size_t	i;

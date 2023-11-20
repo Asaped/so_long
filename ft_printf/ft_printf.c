@@ -6,13 +6,13 @@
 /*   By: moturki <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:17:17 by moturki           #+#    #+#             */
-/*   Updated: 2023/10/26 21:24:11 by moturki          ###   ########.fr       */
+/*   Updated: 2023/11/17 22:31:07 by moturki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_list	ft_traitement(t_list info, char c)
+t_list3	ft_traitement(t_list3 info, char c)
 {
 	if (c == '%')
 		info.tl += write(1, &c, 1);
@@ -36,7 +36,7 @@ t_list	ft_traitement(t_list info, char c)
 
 int	ft_printf(const char *format, ...)
 {
-	t_list	info;
+	t_list3	info;
 	size_t	i;
 
 	i = 0;

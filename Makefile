@@ -1,6 +1,6 @@
 NAME		=	so_long
 
-SRCS		=	so_long.c utils.c parsing.c
+SRCS		=	so_long.c utils.c parsing.c get_next_line.c
 
 OBJS		=	$(SRCS:.c=.o)
 
