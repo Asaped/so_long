@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moturki <marvin@42lausanne.ch>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/22 12:31:30 by moturki           #+#    #+#             */
+/*   Updated: 2023/11/22 13:05:41 by moturki          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-#include "gnl/get_next_line.h"
 
 static int	get_size(t_game *info)
 {
@@ -13,13 +24,15 @@ static int	get_size(t_game *info)
 		while (line[i])
 			i++;
 		if (info->x != i && info->y != 0)
-			return (0);
+			return (ft_error(4));
 		info->x = i;
 		info->y++;
 		line = get_next_line(info->fd);
 	}
-	if (!info->x || !info->y)
-		return (0);
+	if (info->x < 3 || info->y < 3)
+		return (ft_error(5));
+	if (info->x == info->y)
+		return (ft_error(4));
 	close(info->fd);
 	info->fd = open(info->name_map, O_RDONLY);
 	return (1);
@@ -29,12 +42,12 @@ static int	check_ok(t_game *info, int i, int j)
 {
 	if ((i == 0 || i == info->y - 1 || j == 0 || j == info->x - 1)
 		&& info->map[i][j] != '1')
-		return (0);
+		return (ft_error(6));
 	else if (i != 0 && i != info->y - 1 && j != 0 && j != info->x - 1
 		&& info->map[i][j] != '1' && info->map[i][j] != '0'
 		&& info->map[i][j] != 'E' && info->map[i][j] != 'P'
 		&& info->map[i][j] != 'C')
-		return (0);
+		return (ft_error(7));
 	if (info->map[i][j] == 'P')
 	{
 		info->start[0] = i;
@@ -70,7 +83,7 @@ static int	is_map_ok(t_game *info, int p, int c, int e)
 		}
 	}
 	if (e != 1 || p != 1 || c < 1)
-		return (0);
+		return (ft_error(8));
 	info->max_coin = c;
 	return (1);
 }
@@ -80,7 +93,8 @@ static int	is_way(int y, int x, int *coin, t_game *info)
 	int	res;
 
 	res = 0;
-	if (y >= info->y || x >= info->x || y < 0 || x < 0 || info->map_copy[y][x] == '1' || info->map_copy[y][x] == '2')
+	if (y >= info->y || x >= info->x || y < 0 || x < 0
+		|| info->map_copy[y][x] == '1' || info->map_copy[y][x] == '2')
 		return (0);
 	else if (info->map_copy[y][x] == 'E')
 		return (1);
@@ -100,11 +114,11 @@ int	parse_map(t_game *info)
 
 	i = -1;
 	if (!get_size(info))
-		return (ft_error(2));
+		return (0);
 	info->map = malloc(sizeof(char *) * (info->y + 1));
 	info->map_copy = malloc(sizeof(char *) * (info->y + 1));
 	if (!info->map || !info->map_copy)
-		return (0);
+		return (ft_error(9));
 	info->map[info->y] = NULL;
 	info->map_copy[info->y] = NULL;
 	while (++i < info->y)
@@ -115,8 +129,10 @@ int	parse_map(t_game *info)
 	while (++i < info->y)
 		info->map_copy[i] = get_next_line(info->fd);
 	if (!is_map_ok(info, 0, 0, 0))
-		return (ft_error(2) + ft_free_info(info));
-	if (!is_way(info->start[0], info->start[1], &info->coin, info) || info->coin != info->max_coin)
+		return (ft_free_info(info));
+	if (!is_way(info->start[0], info->start[1], &info->coin, info))
 		return (ft_error(3) + ft_free_info(info));
+	if (info->coin != info->max_coin)
+		return (ft_error(10) + ft_free_info(info));
 	return (1);
 }
