@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlen2(const char *str)
 {
 	int	i;
 
@@ -24,13 +24,13 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char s2)
+char	*ft_strjoin2(char *s1, char s2)
 {
 	int		len;
 	int		i;
 	char	*str;
 
-	len = ft_strlen(s1);
+	len = ft_strlen2(s1);
 	str = malloc(sizeof(char) * (len + 2));
 	if (!str)
 		return (NULL);
@@ -47,7 +47,7 @@ char	*ft_strjoin(char *s1, char s2)
 	return (str);
 }
 
-int	init_info(t_list *info, int fd)
+int	init_info(t_list5 *info, int fd)
 {
 	info->curlen = 0;
 	info->fd = fd;
@@ -57,7 +57,7 @@ int	init_info(t_list *info, int fd)
 	return (1);
 }
 
-char	set_char(t_list *info)
+char	set_char(t_list5 *info)
 {
 	char	c;
 

@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list	info = {.fd = -1};
+	static t_list5	info = {.fd = -1};
 	char			*str;
 	char			c;
 
@@ -25,10 +25,10 @@ char	*get_next_line(int fd)
 	c = set_char(&info);
 	while (c)
 	{
-		str = ft_strjoin(str, c);
+		str = ft_strjoin2(str, c);
+		c = set_char(&info);
 		if (c == '\n')
 			return (str);
-		c = set_char(&info);
 	}
 	return (str);
 }

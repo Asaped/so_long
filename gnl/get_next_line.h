@@ -14,28 +14,28 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 1
 # endif
 
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_list
+typedef struct s_list5
 {
 	int		fd;
 	int		curlen;
 	int		size;
 	char	buffer[BUFFER_SIZE];
-}				t_list;
+}				t_list5;
 
 char	*get_next_line(int fd);
 
-int		ft_strlen(const char *str);
+int		ft_strlen2(const char *str);
 
-char	*ft_strjoin(char *s1, char s2);
+char	*ft_strjoin2(char *s1, char s2);
 
-int		init_info(t_list *info, int fd);
+int		init_info(t_list5 *info, int fd);
 
-char	set_char(t_list *info);
+char	set_char(t_list5 *info);
 
 #endif

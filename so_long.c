@@ -12,9 +12,11 @@ int	main(int ac, char **av)
 		info.name_map = av[1];
 		info.x = 0;
 		info.y = 0;
+		info.coin = 0;
 		if (!parse_map(&info))
-			return (ft_error(2));
+			return (0);
 	}
 	else
 		ft_printf("Error !\nUsage : ./so_long map.ber\n");
+	return (0);
 }
